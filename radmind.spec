@@ -18,6 +18,7 @@ Requires:	openssl
 BuildRequires:	openssl-devel
 BuildRequires:	libsnet-devel >= 20060523
 BuildRequires:	pam-devel
+BuildRequires:	libsasl-devel
 BuildRoot:	%{_tmppath}/%{name}-%{version}-root
 
 %description
