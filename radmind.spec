@@ -1,7 +1,7 @@
 Summary:	Remotely administer the file systems of multiple unix machines
 Name:		radmind
 Version:	1.8.1
-Release:	%mkrel 1
+Release:	%mkrel 2
 License:	BSD-like
 Group:		System/Servers
 URL:		http://rsug.itd.umich.edu/
@@ -10,6 +10,7 @@ Source2:	radmind-1.3.2-init
 Source3:	radmind-1.3.2-sysconfig
 Source4:	radmind-1.3.2-config
 Source5:	radmind-1.3.2-pam
+Source6:        radmind-1.3.2.pam-0.77
 Patch0:		radmind-system_libs.diff
 Requires(post): rpm-helper
 Requires(preun): rpm-helper
@@ -47,10 +48,14 @@ mkdir -p Mandriva
 cp %{SOURCE2} Mandriva/radmind-1.3.2-init
 cp %{SOURCE3} Mandriva/radmind-1.3.2-sysconfig
 cp %{SOURCE4} Mandriva/radmind-1.3.2-config
+%if %{mdkversion} < 200610
 cp %{SOURCE5} Mandriva/radmind-1.3.2-pam
+%else
+cp %{SOURCE6} Mandriva/radmind-1.3.2-pam
+%endif
 
 %build
-
+%serverbuild
 #export LIBS="$LIBS -lsasl"
 
 %configure2_5x \
