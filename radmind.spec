@@ -1,7 +1,7 @@
 Summary:	Remotely administer the file systems of multiple unix machines
 Name:		radmind
-Version:	1.8.1
-Release:	%mkrel 2
+Version:	1.10.0
+Release:	%mkrel 1
 License:	BSD-like
 Group:		System/Servers
 URL:		http://rsug.itd.umich.edu/
