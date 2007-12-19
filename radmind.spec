@@ -1,6 +1,6 @@
 Summary:	Remotely administer the file systems of multiple unix machines
 Name:		radmind
-Version:	1.10.0
+Version:	1.11.0
 Release:	%mkrel 1
 License:	BSD-like
 Group:		System/Servers
@@ -21,6 +21,7 @@ BuildRequires:	libsnet-devel >= 20060523
 BuildRequires:	pam-devel
 BuildRequires:	libsasl-devel
 BuildRequires:	zlib-devel
+Buildroot:	%{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
 A suite of Unix command-line tools and a server designed to remotely administer
