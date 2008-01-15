@@ -1,6 +1,6 @@
 Summary:	Remotely administer the file systems of multiple unix machines
 Name:		radmind
-Version:	1.11.0
+Version:	1.11.1
 Release:	%mkrel 1
 License:	BSD-like
 Group:		System/Servers
