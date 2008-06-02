@@ -60,7 +60,7 @@ cp %{SOURCE6} Mandriva/radmind-1.3.2-pam
 
 %configure2_5x \
     --with-server="localhost" \
-    --with-radminddir=%{_localstatedir}/radmind \
+    --with-radminddir=%{_localstatedir}/lib/radmind \
     --with-ssl=%{_prefix}
 
 perl -pi -e "s|^GNU_DIFF.*|GNU_DIFF=%{_bindir}/diff|g" Makefile
@@ -80,19 +80,19 @@ export DONT_GPRINTIFY=1
 install -d %{buildroot}%{_sysconfdir}/pam.d
 install -d %{buildroot}%{_sysconfdir}/sysconfig
 install -d %{buildroot}%{_initrddir}
-install -d %{buildroot}%{_localstatedir}/radmind/command
-install -d %{buildroot}%{_localstatedir}/radmind/file
-install -d %{buildroot}%{_localstatedir}/radmind/special
-install -d %{buildroot}%{_localstatedir}/radmind/tmp
-install -d %{buildroot}%{_localstatedir}/radmind/tmp/file
-install -d %{buildroot}%{_localstatedir}/radmind/tmp/transcript
-install -d %{buildroot}%{_localstatedir}/radmind/transcript
+install -d %{buildroot}%{_localstatedir}/lib/radmind/command
+install -d %{buildroot}%{_localstatedir}/lib/radmind/file
+install -d %{buildroot}%{_localstatedir}/lib/radmind/special
+install -d %{buildroot}%{_localstatedir}/lib/radmind/tmp
+install -d %{buildroot}%{_localstatedir}/lib/radmind/tmp/file
+install -d %{buildroot}%{_localstatedir}/lib/radmind/tmp/transcript
+install -d %{buildroot}%{_localstatedir}/lib/radmind/transcript
 
 %makeinstall_std
 
 install -m0755 Mandriva/radmind-1.3.2-init %{buildroot}%{_initrddir}/radmind
 install -m0644 Mandriva/radmind-1.3.2-sysconfig %{buildroot}%{_sysconfdir}/sysconfig/radmind
-install -m0644 Mandriva/radmind-1.3.2-config %{buildroot}%{_localstatedir}/radmind/config
+install -m0644 Mandriva/radmind-1.3.2-config %{buildroot}%{_localstatedir}/lib/radmind/config
 install -m0644 Mandriva/radmind-1.3.2-pam %{buildroot}%{_sysconfdir}/pam.d/radmind
 
 %post
@@ -110,16 +110,16 @@ install -m0644 Mandriva/radmind-1.3.2-pam %{buildroot}%{_sysconfdir}/pam.d/radmi
 %attr(0755,root,root) %{_initrddir}/radmind
 %attr(0644,root,root) %config(noreplace) %{_sysconfdir}/sysconfig/radmind
 %attr(0644,root,root) %config(noreplace) %{_sysconfdir}/pam.d/radmind
-%attr(0750,root,root) %dir %{_localstatedir}/radmind
-%attr(0644,root,root) %config(noreplace) %{_localstatedir}/radmind/config
+%attr(0750,root,root) %dir %{_localstatedir}/lib/radmind
+%attr(0644,root,root) %config(noreplace) %{_localstatedir}/lib/radmind/config
 %attr(0750,root,root) %dir %{_sysconfdir}/pki/radmind
 %{_bindir}/*
 %{_sbindir}/*
-%attr(0750,root,root) %dir %{_localstatedir}/radmind/command
-%attr(0750,root,root) %dir %{_localstatedir}/radmind/file
-%attr(0750,root,root) %dir %{_localstatedir}/radmind/special
-%attr(0750,root,root) %dir %{_localstatedir}/radmind/tmp
-%attr(0750,root,root) %dir %{_localstatedir}/radmind/tmp/file
-%attr(0750,root,root) %dir %{_localstatedir}/radmind/tmp/transcript
-%attr(0750,root,root) %dir %{_localstatedir}/radmind/transcript
+%attr(0750,root,root) %dir %{_localstatedir}/lib/radmind/command
+%attr(0750,root,root) %dir %{_localstatedir}/lib/radmind/file
+%attr(0750,root,root) %dir %{_localstatedir}/lib/radmind/special
+%attr(0750,root,root) %dir %{_localstatedir}/lib/radmind/tmp
+%attr(0750,root,root) %dir %{_localstatedir}/lib/radmind/tmp/file
+%attr(0750,root,root) %dir %{_localstatedir}/lib/radmind/tmp/transcript
+%attr(0750,root,root) %dir %{_localstatedir}/lib/radmind/transcript
 %{_mandir}/man?/*
