@@ -1,0 +1,50 @@
+--- Makefile.in	2008-01-14 18:14:25.000000000 +0100
++++ Makefile.in.oden	2008-01-15 12:20:46.000000000 +0100
+@@ -33,12 +33,12 @@
+ 
+ RADMINDSYSLOG=LOG_LOCAL7
+ 
+-INCPATH=        @CPPFLAGS@ -I${srcdir}/libsnet -I.
++INCPATH=        @CPPFLAGS@ -I.
+ OPTOPTS=	@OPTOPTS@
+ CC=		@CC@
+ DEFS=		
+-LIBS=		-lsnet @LIBS@
+-LDFLAGS=	-Llibsnet/.libs @LDFLAGS@ ${LIBS}
++LIBS=		-lsnet -lsasl2 @LIBS@
++LDFLAGS=	@LDFLAGS@ ${LIBS}
+ INSTALL=	@INSTALL@
+ 
+ CFLAGS=		${DEFS} ${OPTOPTS} @CFLAGS@ ${INCPATH}
+@@ -189,7 +189,7 @@
+ 		-D_RADMIND_TLS_CERT=\"${TLS_CERT}\" \
+ 		-c ${srcdir}/tls.c
+ 
+-radmind : libsnet/libsnet.la ${RADMIND_OBJ} Makefile
++radmind : ${RADMIND_OBJ} Makefile
+ 	${CC} ${CFLAGS} -o radmind ${RADMIND_OBJ} ${LDFLAGS}
+ 
+ fsdiff : ${FSDIFF_OBJ}
+@@ -224,9 +224,6 @@
+ 
+ FRC :
+ 
+-libsnet/libsnet.la : FRC
+-	cd libsnet; ${MAKE}
+-
+ VERSION=$(shell cat VERSION)
+ DISTDIR=../radmind-${VERSION}
+ 
+@@ -357,7 +354,6 @@
+ 	sudo rm -rf ${PKGDIR}
+ 
+ clean :
+-	(cd libsnet; ${MAKE} clean)
+ 	rm -f *.o a.out core
+ 	rm -f ${TARGETS}
+ 	rm -rf tmp
+@@ -366,4 +362,3 @@
+ 	rm -f config.log config.status Makefile config.h
+ 	rm -rf autom4te.cache
+ 	rm -rf .#*
+-	cd libsnet; make distclean
