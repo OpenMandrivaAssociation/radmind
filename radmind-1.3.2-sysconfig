@@ -1,0 +1,48 @@
+# Author: Oden Eriksson <oeriksson@mandriva.com>
+
+# specifies the address on which the server should listen, e.g.
+# 127.0.0.1. By default the server listens on all available
+# interfaces (wildcard address).
+_RADMIND_BIND_ADDRESS="-a 0"
+
+# Defines the maximum queue of pending connections to
+# listen, by default five.
+_RADMIND_BACKLOG="-b 5"
+
+# specifies the radmind working directory, by default
+# _RADMIND_PATH
+_RADMIND_PATH="-D /var/lib/radmind"
+
+# specifies which syslog-facilty to log messages to.
+_RADMIND_SYSLOG_FACILITY="-L local7"
+
+# specifies the maximum number of simultaneous connections, by
+# default _RADMIND_MAXCONNECTIONS. Value must be greater than or
+# equal to 0 with 0 indicating no limit.
+_RADMIND_MAXCONNECTIONS="-m 0"
+
+# specifies the port of the radmind server, by default 6662.
+_RADMIND_PORT="-p 6662"
+
+# specifies the umask the server uses to write files to the disk,
+# defaulting to the user's umask.
+_RADMIND_UMASK="-u 022"
+
+# Turn on PAM user authentication. radmind uses the PAM service
+# name radmind. Unset to disable.
+_RADMIND_PAM="-U"
+
+# TLS authorization level, by default _RADMIND_AUTHLEVEL. 0 = no
+# TLS, 1 = server verification, 2 = server and client
+# verification.
+_RADMIND_AUTHLEVEL="-w 0"
+
+# Certificate authority's public certificate, by default
+# _RADMIND_TLS_CA.
+_RADMIND_TLS_CA="-x /etc/ssl/radmind/ca.pem"
+
+# Server's public certificate, by default _RADMIND_TLS_CERT.
+_RADMIND_TLS_PUBLIC_CERT="-y /etc/ssl/radmind/cert.pem"
+
+# Server's private key, by default _RADMIND_TLS_CERT.
+_RADMIND_TLS_PRIVATE_CERT="-z /etc/ssl/radmind/cert.pem"

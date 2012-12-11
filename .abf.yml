@@ -1,7 +1,2 @@
 sources:
-  "radmind-1.11.1.tar.gz:"	65a88fa98307b84a72c6a2de60e431b2308b5296
-  "radmind-1.3.2-config:"	0e0a1827c97bf9e5dbadaca97a90dbc61b9aa24f
-  "radmind-1.3.2-init:"	c3f0908d4b400ffe8f47789244a19b894d6e7016
-  "radmind-1.3.2-pam:"	c4d0d836d48e65eb23adf919cb7711ff40395600
-  "radmind-1.3.2.pam-0.77:"	d809f4fff74aa7d658f66ece9282811c4332e9bb
-  "radmind-1.3.2-sysconfig:"	3e1a0dd6058eac50187d9c9b1a567af31b4cb135
+  "radmind-1.11.1.tar.gz": 65a88fa98307b84a72c6a2de60e431b2308b5296

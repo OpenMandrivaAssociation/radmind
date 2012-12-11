@@ -1,0 +1,89 @@
+#!/bin/bash
+#
+# Startup script for the radmind daemon
+# 
+# Author: Oden Eriksson <oeriksson@mandriva.com>
+#
+# chkconfig: - 80 30
+# description: radmind is a suite of Unix command-line \
+# tools and a server designed to remotely administer the \
+# file systems of multiple Unix machines.
+# processname: radmind
+# pidfile: /var/run/radmind.pid
+# config: /etc/sysconfig/radmind
+
+# Source function library.
+. /etc/rc.d/init.d/functions
+
+# Source networking configuration.
+. /etc/sysconfig/network
+
+[ ${NETWORKING} = "no" ] && exit 0
+
+[ -x /usr/sbin/radmind ] || exit 0
+
+# Source  radmind config
+[ -f /etc/sysconfig/radmind ] && . /etc/sysconfig/radmind
+
+# See how we were called.
+case "$1" in
+  start)
+	echo -n "Starting radmind: "
+        daemon radmind \
+	    ${_RADMIND_BIND_ADDRESS:-"-a 0"} \
+	    ${_RADMIND_BACKLOG:-"-b 5"} \
+	    ${_RADMIND_PATH:-"-D /var/lib/radmind"} \
+	    ${_RADMIND_SYSLOG_FACILITY:-"-L local7"} \
+	    ${_RADMIND_MAXCONNECTIONS:-"-m 0"} \
+	    ${_RADMIND_PORT:-"-p 6662"} \
+	    ${_RADMIND_UMASK:-"-u 022"} \
+	    ${_RADMIND_PAM:-""} \
+	    ${_RADMIND_AUTHLEVEL:-"-w 0"} \
+	    ${_RADMIND_TLS_CA:-"-x /etc/ssl/radmind/ca.pem"} \
+	    ${_RADMIND_TLS_PUBLIC_CERT:-"-y /etc/ssl/radmind/cert.pem"} \
+	    ${_RADMIND_TLS_PRIVATE_CERT:-"-z /etc/ssl/radmind/cert.pem"}
+	RETVAL=$?
+	echo
+	[ $RETVAL -eq 0 ] && touch /var/lock/subsys/radmind
+	;;
+  stop)
+	echo -n "Stopping radmind: "
+	killproc radmind
+	RETVAL=$?
+	echo
+	[ $RETVAL -eq 0 ] && rm -f /var/lock/subsys/radmind
+	;;
+  debug)
+	echo -n "Starting radmind in debug mode: "
+        daemon radmind -d \
+	    ${_RADMIND_BIND_ADDRESS:-"-a 0"} \
+	    ${_RADMIND_BACKLOG:-"-b 5"} \
+	    ${_RADMIND_PATH:-"-D /var/lib/radmind"} \
+	    ${_RADMIND_SYSLOG_FACILITY:-"-L local7"} \
+	    ${_RADMIND_MAXCONNECTIONS:-"-m 0"} \
+	    ${_RADMIND_PORT:-"-p 6662"} \
+	    ${_RADMIND_UMASK:-"-u 022"} \
+	    ${_RADMIND_PAM:-""} \
+	    ${_RADMIND_AUTHLEVEL:-"-w 0"} \
+	    ${_RADMIND_TLS_CA:-"-x /etc/ssl/radmind/ca.pem"} \
+	    ${_RADMIND_TLS_PUBLIC_CERT:-"-y /etc/ssl/radmind/cert.pem"} \
+	    ${_RADMIND_TLS_PRIVATE_CERT:-"-z /etc/ssl/radmind/cert.pem"}
+	RETVAL=$?
+	echo
+	[ $RETVAL -eq 0 ] && touch /var/lock/subsys/radmind
+	;;
+  status)
+	status radmind
+	RETVAL=$?
+	;;
+  restart|reload)
+	$0 stop
+	$0 start
+	RETVAL=$?
+	;;
+  *)
+	echo "Usage: radmind {start|stop|status|restart|reload|debug}"
+	exit 1
+esac
+
+exit $RETVAL
