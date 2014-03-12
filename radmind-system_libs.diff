@@ -1,6 +1,7 @@
---- Makefile.in	2008-01-14 18:14:25.000000000 +0100
-+++ Makefile.in.oden	2008-01-15 12:20:46.000000000 +0100
-@@ -33,12 +33,12 @@
+diff -urN radmind-1.14.1/Makefile.in radmind-1.14.1-patched/Makefile.in
+--- radmind-1.14.1/Makefile.in	2010-12-13 13:43:49.000000000 +1000
++++ radmind-1.14.1-patched/Makefile.in	2014-03-13 00:13:45.058136246 +1100
+@@ -35,12 +35,12 @@
  
  RADMINDSYSLOG=LOG_LOCAL7
  
@@ -16,7 +17,7 @@
  INSTALL=	@INSTALL@
  
  CFLAGS=		${DEFS} ${OPTOPTS} @CFLAGS@ ${INCPATH}
-@@ -189,7 +189,7 @@
+@@ -201,7 +201,7 @@
  		-D_RADMIND_TLS_CERT=\"${TLS_CERT}\" \
  		-c ${srcdir}/tls.c
  
@@ -25,17 +26,17 @@
  	${CC} ${CFLAGS} -o radmind ${RADMIND_OBJ} ${LDFLAGS}
  
  fsdiff : ${FSDIFF_OBJ}
-@@ -224,9 +224,6 @@
+@@ -239,9 +239,6 @@
  
  FRC :
  
 -libsnet/libsnet.la : FRC
 -	cd libsnet; ${MAKE}
 -
- VERSION=$(shell cat VERSION)
- DISTDIR=../radmind-${VERSION}
+ VERSION=1.14.1
+ DISTDIR=radmind-${VERSION}
  
-@@ -357,7 +354,6 @@
+@@ -372,7 +369,6 @@
  	sudo rm -rf ${PKGDIR}
  
  clean :
@@ -43,7 +44,7 @@
  	rm -f *.o a.out core
  	rm -f ${TARGETS}
  	rm -rf tmp
-@@ -366,4 +362,3 @@
+@@ -381,4 +377,3 @@
  	rm -f config.log config.status Makefile config.h
  	rm -rf autom4te.cache
  	rm -rf .#*
