@@ -4,7 +4,7 @@ Version:	1.14.1
 Release:	2
 License:	BSD
 Group:		System/Servers
-Url:		http://rsug.itd.umich.edu/
+Url:		https://rsug.itd.umich.edu/
 Source0:	http://rsug.itd.umich.edu/software/radmind/files/%{name}-%{version}.tar.gz
 Source2:	radmind-1.3.2-init
 Source3:	radmind-1.3.2-sysconfig
