@@ -11,6 +11,11 @@ Source3:	radmind-1.3.2-sysconfig
 Source4:	radmind-1.3.2-config
 Source5:	radmind-1.3.2.pam-0.77
 Patch0:		radmind-system_libs.diff
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
+BuildRequires:	make
 BuildRequires:	libsnet-devel
 BuildRequires:	pam-devel
 BuildRequires:	sasl-devel
